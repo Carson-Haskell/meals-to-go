@@ -1,31 +1,25 @@
-import { SafeAreaView, View, StatusBar } from "react-native";
 import Searchbar from "../../../components/Searchbar";
 import RestaurantInfo from "../components/restaurant-info.component";
-import styled from "styled-components";
+import Spacer from "../../../components/Spacer/Spacer";
+import SafeArea from "../../../components/SafeArea/safe-area.component";
+
+import { RestaurantList, SearchContainer } from "./restaurants.styles";
 
 const RestaurantsScreen = () => (
   <SafeArea>
     <SearchContainer>
       <Searchbar />
     </SearchContainer>
-    <RestaurantListContainer>
-      <RestaurantInfo />
-    </RestaurantListContainer>
+    <RestaurantList
+      data={[{ name: 1 }, { name: 2 }, { name: 3 }, { name: 4 }, { name: 5 }]}
+      renderItem={() => (
+        <Spacer position="bottom" size="large">
+          <RestaurantInfo />
+        </Spacer>
+      )}
+      keyExtractor={(item) => item.name}
+    />
   </SafeArea>
 );
 
 export default RestaurantsScreen;
-
-const SafeArea = styled(SafeAreaView)`
-  flex: 1;
-  ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`}
-`;
-
-const SearchContainer = styled(View)`
-  padding: ${({ theme }) => theme.space[3]};
-`;
-
-const RestaurantListContainer = styled(View)`
-  flex: 1;
-  padding: ${({ theme }) => theme.space[3]};
-`;
