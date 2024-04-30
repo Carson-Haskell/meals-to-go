@@ -39,20 +39,23 @@ export default function App() {
 
       return <Ionicons name={iconName} size={size} color={color} />;
     },
-    headerShown: false
+    headerShown: false,
+
+    tabBarActiveTintColor: "tomato",
+    tabBarInactiveTintColor: "gray",
+    tabBarStyle: [
+      {
+        display: "flex"
+      },
+      null
+    ]
   });
 
   return (
     <>
       <ThemeProvider theme={theme}>
         <NavigationContainer>
-          <Tab.Navigator
-            screenOptions={screenOptions}
-            tabBarOptions={{
-              activeTintColor: "tomato",
-              inactiveTintColor: "gray"
-            }}
-          >
+          <Tab.Navigator screenOptions={screenOptions}>
             <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
             <Tab.Screen name="Map" component={Map} />
             <Tab.Screen name="Settings" component={Settings} />
