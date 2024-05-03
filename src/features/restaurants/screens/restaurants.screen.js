@@ -7,25 +7,33 @@ import SafeArea from "../../../components/SafeArea/safe-area.component";
 
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
 
-import { RestaurantList, SearchContainer } from "./restaurants.styles";
+import {
+  RestaurantList,
+  SearchContainer,
+  LoadingIndicator
+} from "./restaurants.styles";
 
 const RestaurantsScreen = () => {
-  const { restaurants } = useContext(RestaurantsContext);
+  const { restaurants, isLoading, error } = useContext(RestaurantsContext);
 
   return (
     <SafeArea>
       <SearchContainer>
         <Searchbar />
       </SearchContainer>
-      <RestaurantList
-        data={restaurants}
-        renderItem={() => (
-          <Spacer position="bottom" size="large">
-            <RestaurantInfo />
-          </Spacer>
-        )}
-        keyExtractor={(item) => item.name}
-      />
+      {isLoading ? (
+        <LoadingIndicator size="large" />
+      ) : (
+        <RestaurantList
+          data={restaurants}
+          renderItem={({ item }) => (
+            <Spacer position="bottom" size="large">
+              <RestaurantInfo restaurant={item} />
+            </Spacer>
+          )}
+          keyExtractor={(item) => item.name}
+        />
+      )}
     </SafeArea>
   );
 };
