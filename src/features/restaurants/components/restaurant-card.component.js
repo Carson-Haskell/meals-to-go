@@ -24,7 +24,8 @@ const RestaurantCard = ({
   rating,
   isOpenNow,
   isClosedTemporarily,
-  icon
+  icon,
+  placeId
 }) => {
   const ratingArray = Array.from(new Array(Math.floor(rating)));
 
@@ -34,7 +35,7 @@ const RestaurantCard = ({
       <Info>
         <Text variant="label">{name}</Text>
         <Section>
-          <Rating rating={ratingArray} />
+          <Rating rating={ratingArray} placeId={placeId} />
           <SectionEnd>
             {isClosedTemporarily && (
               <Text variant="error">CLOSED TEMPORARILY</Text>
