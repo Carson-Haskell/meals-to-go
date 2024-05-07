@@ -38,7 +38,7 @@ export default function AppNavigator() {
   return (
     <NavigationContainer>
       <Tab.Navigator screenOptions={screenOptions}>
-        <Tab.Screen name="Restaurants-tab" component={RestaurantsNavigator} />
+        <Tab.Screen name="RestaurantsTab" component={RestaurantsNavigator} />
         <Tab.Screen name="Map" component={Map} />
         <Tab.Screen name="Settings" component={Settings} />
       </Tab.Navigator>

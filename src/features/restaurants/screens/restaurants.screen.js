@@ -8,8 +8,9 @@ import Search from "../components/search.component";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
 
 import { RestaurantList, LoadingIndicator } from "./restaurants.styles";
+import { TouchableOpacity } from "react-native";
 
-const RestaurantsScreen = () => {
+const RestaurantsScreen = ({ navigation }) => {
   const { restaurants, isLoading } = useContext(RestaurantsContext);
 
   return (
@@ -21,9 +22,13 @@ const RestaurantsScreen = () => {
         <RestaurantList
           data={restaurants}
           renderItem={({ item }) => (
-            <Spacer position="bottom" size="large">
-              <RestaurantInfo restaurant={item} />
-            </Spacer>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("RestaurantDetails")}
+            >
+              <Spacer position="bottom" size="large">
+                <RestaurantInfo restaurant={item} />
+              </Spacer>
+            </TouchableOpacity>
           )}
           keyExtractor={(item) => item.name}
         />
